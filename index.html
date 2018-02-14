@@ -1,21 +1,49 @@
 <html>
-	<head>
-		<title>gdprpw</title>
-		<meta charset="utf-8">
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-  </head>
-	<body>
-		<div class="container">
-      <div class="row">
-        <div class="col-xs-3">
-          <form class="form-group">
-            <input type="password" class="form-control"/>
-          </form>
-          <p class="'">message</p>
-          <div class="btn btn-primary" id="submit">submit</button>
+
+<head>
+  <title>gdprpw</title>
+  <meta charset="utf-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-5">
+        <form class="form-group">
+          <input type="password" class="form-control" />
+        </form>
+        <div class="row">
+          <div class="col-xs-5">Must have (least 3):</div>
+          <div class="col-xs-7 pull-right">
+            <ul class="list-unstyled">
+              <li class="label label-info">1 - 9</li>
+              <li class="label label-info">A - Z</li>
+              <li class="label label-info">a - z</li>
+              <li class="label label-info">!@#$%&</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5">Must Not have :</div>
+          <div class="col-xs-7 pull-right">
+            <span class="label label-info">1234</span>
+            <span>Repetetive Pattern</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-7 pull-right">
+            <span class="label label-info">Uid</span>
+            <span>user id or parts of use rid</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" disabled id="submit">submit</button>
         </div>
       </div>
-		</div>
-	</body>
+    </div>
+  </div>
+</body>
+
 </html>
