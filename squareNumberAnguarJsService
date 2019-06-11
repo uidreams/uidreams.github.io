@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>angular Js square Number service</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="squareApp">
+        <div ng-controller="squareValCtrl">
+            <input type="number" ng-model="number">
+            <button ng-click="squareIt()">square</button>
+            <p>Result : <span>{{result}}</span></p>
+        </div>
+    </div>
+</body>
+<script>
+    var app = angular.module('squareApp', []);
+    app.controller('squareValCtrl', function($scope, squareValService) {
+        $scope.squareIt = function() {
+            $scope.result = squareValService.square($scope.number);
+        };
+    });
+    app.service('squareValService', function() {
+        this.square = function(val) {
+            return (val * val);
+        }
+    })
+</script>
+</html>
