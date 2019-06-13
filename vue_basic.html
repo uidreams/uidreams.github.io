@@ -9,6 +9,7 @@
         .textBold { font-weight: bold; padding: 5px; }
         .textItalic { font-style: italic;}
         input[type=text] { width: 300px; padding: 5px;}
+        .xicon {background-color: #cacaca; border-radius: 30%; padding: 3px; cursor: pointer;}
     </style>
 </head>
 <body>
@@ -21,7 +22,7 @@
             <li v-for="data in skills" v-bind:class="{textBold: applyStyle}"> {{ data.index }}{{ data.skill }} 
                 <span v-if="data.exp">and  {{data.exp}}</span>
                 <span style="padding-left: 30px;">
-                    <!--<span style="background-color: #cacaca; border-radius: 30%; padding: 3px;">x</span>-->
+                    <span class="xicon" v-on:click="remove(index)">x</span>
                 </span>
             </li>
         </ol>
@@ -46,6 +47,9 @@
                 addSkill() {
                     this.skills.push({skill: this.skill})
                     this.skill = ''
+                },
+                remove(id) {
+                    this.skills.splice(this.skill, 1);
                 }
             } 
         });
