@@ -15,7 +15,7 @@
 <body>
     <div id="demo">
         <form @submit.prevent="addSkill">
-            <input type="text" placeholder="type your skill and press enter.." v-model='skill'>
+            <input type="text" placeholder="type your skill and press enter." required v-model='skill'>
         </form>
         <p>new skill: {{skill}}</p>
         <ol>
