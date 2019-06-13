@@ -1,49 +1,58 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>gdprpw</title>
-  <meta charset="utf-8">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .textBold { font-weight: bold; padding: 5px; }
+        .textItalic { font-style: italic;}
+        input[type=text] { width: 300px; padding: 5px;}
+        .xicon {background-color: #cacaca; border-radius: 30%; padding: 3px; cursor: pointer;}
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-5">
-        <form class="form-group">
-          <input type="password" class="form-control" />
+    <div id="demo">
+        <form @submit.prevent="addSkill">
+            <input type="text" placeholder="type your skill and press enter." required v-model='skill'>
         </form>
-        <div class="row">
-          <div class="col-xs-5">Must have (least 3):</div>
-          <div class="col-xs-7 pull-right">
-            <ul class="list-unstyled">
-              <li class="label label-info">1 - 9</li>
-              <li class="label label-info">A - Z</li>
-              <li class="label label-info">a - z</li>
-              <li class="label label-info">!@#$%&</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-5">Must Not have :</div>
-          <div class="col-xs-7 pull-right">
-            <span class="label label-info">1234</span>
-            <span>Repetetive Pattern</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-5"></div>
-          <div class="col-xs-7 pull-right">
-            <span class="label label-info">Uid</span>
-            <span>user id or parts of use rid</span>
-          </div>
-        </div>
-        <button class="btn btn-primary" disabled id="submit">submit</button>
-        </div>
-      </div>
+        <p>new skill: {{skill}}</p>
+        <ol>
+            <li v-for="(data, index) in skills" v-bind:class="{textBold: applyStyle}"> {{ data.index }}{{ data.skill }} 
+                <span v-if="data.exp">and  {{data.exp}}</span>
+                <span style="padding-left: 30px;">
+                    <span class="xicon" v-on:click="remove(index)">x</span>
+                </span>
+            </li>
+        </ol>
+        
     </div>
-  </div>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
 
+    <script>
+        var app = new Vue({
+            el: '#demo',
+            data: {
+                message: 'hello vue',
+                skills: [
+                    { skill: 'vue Js', exp: 2 },
+                    { skill: 'Front end' }
+                ],
+                applyStyle: true,
+                skill: ''
+            },
+            methods: {
+                addSkill() {
+                    this.skills.push({skill: this.skill})
+                    this.skill = ''
+                },
+                remove(id) {
+                    this.skills.splice(id, 1);
+                }
+            } 
+        });
+    </script>
+</body>
 </html>
