@@ -19,7 +19,7 @@
         </form>
         <p>new skill: {{skill}}</p>
         <ol>
-            <li v-for="data in skills" v-bind:class="{textBold: applyStyle}"> {{ data.index }}{{ data.skill }} 
+            <li v-for="(data, index) in skills" v-bind:class="{textBold: applyStyle}"> {{ data.index }}{{ data.skill }} 
                 <span v-if="data.exp">and  {{data.exp}}</span>
                 <span style="padding-left: 30px;">
                     <span class="xicon" v-on:click="remove(index)">x</span>
@@ -49,7 +49,7 @@
                     this.skill = ''
                 },
                 remove(id) {
-                    this.skills.splice(this.skill, 1);
+                    this.skills.splice(id, 1);
                 }
             } 
         });
