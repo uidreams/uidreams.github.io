@@ -6,51 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .textBold { font-weight: bold; padding: 5px; }
-        .textItalic { font-style: italic;}
-        input[type=text] { width: 300px; padding: 5px;}
-        .xicon {background-color: #cacaca; border-radius: 30%; padding: 3px; cursor: pointer;}
+        .pageBlock {margin: 5px; padding: 5px; list-style-type: none; text-decoration: none;}
     </style>
 </head>
 <body>
     <div id="demo">
-        <form @submit.prevent="addSkill">
-            <input type="text" placeholder="type your skill and press enter." required v-model='skill'>
-        </form>
-        <p>new skill: {{skill}}</p>
-        <ol>
-            <li v-for="(data, index) in skills" v-bind:class="{textBold: applyStyle}"> {{ data.index }}{{ data.skill }} 
-                <span v-if="data.exp">and  {{data.exp}}</span>
-                <span style="padding-left: 30px;">
-                    <span class="xicon" v-on:click="remove(index)">x</span>
-                </span>
+        <h4>{{heading}}</h4>
+        <ul>
+            <li v-for="(data, index) in pages" class="pageBlock">
+                <a href="{{data.url}}">{{data.page}}</a>
             </li>
-        </ol>
-        
+        </ul>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
-
     <script>
         var app = new Vue({
             el: '#demo',
             data: {
-                message: 'hello vue',
-                skills: [
-                    { skill: 'vue Js', exp: 2 },
-                    { skill: 'Front end' }
-                ],
-                applyStyle: true,
-                skill: ''
+                heading: 'Pages',
+                pages: [
+                    { page: 'vue basic', url: 'vue_basic.html'},
+                    { page: 'random number', url: 'randomNumber.html' }
+                ]
             },
             methods: {
-                addSkill() {
-                    this.skills.push({skill: this.skill})
-                    this.skill = ''
-                },
-                remove(id) {
-                    this.skills.splice(id, 1);
-                }
+
             } 
         });
     </script>
