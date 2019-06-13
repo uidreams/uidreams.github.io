@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .textBold { font-weight: bold; padding: 5px; }
+        .textItalic { font-style: italic;}
+        input[type=text] { width: 300px; padding: 5px;}
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <form @submit.prevent="addSkill">
+            <input type="text" placeholder="type your skill and press enter.." v-model='skill'>
+        </form>
+        <p>new skill: {{skill}}</p>
+        <ol>
+            <li v-for="data in skills" v-bind:class="{textBold: applyStyle}"> {{ data.index }}{{ data.skill }} 
+                <span v-if="data.exp">and  {{data.exp}}</span>
+                <span style="padding-left: 30px;">
+                    <span style="background-color: #cacaca; border-radius: 30%; padding: 3px;"></span>
+                </span>
+            </li>
+        </ol>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#demo',
+            data: {
+                message: 'hello vue',
+                skills: [
+                    { skill: 'vue Js', exp: 2 },
+                    { skill: 'Front end' }
+                ],
+                applyStyle: true,
+                skill: ''
+            },
+            methods: {
+                addSkill() {
+                    this.skills.push({skill: this.skill})
+                    this.skill = ''
+                }
+            } 
+        });
+    </script>
+</body>
+</html>
